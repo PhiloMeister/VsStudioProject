@@ -57,6 +57,7 @@ namespace ImageEdgeDetection
 
         private void btnSaveNewImage_Click(object sender, EventArgs e)
         {
+            //test
             ApplyFilter(false);
 
             if (resultBitmap != null)
