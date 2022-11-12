@@ -57,7 +57,7 @@ namespace ImageEdgeDetection
 
         private void btnSaveNewImage_Click(object sender, EventArgs e)
         {
-            //test
+            //testtadwda
             ApplyFilter(false);
 
             if (resultBitmap != null)
