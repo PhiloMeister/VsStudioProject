@@ -35,26 +35,26 @@
             this.btnOpenOriginal = new System.Windows.Forms.Button();
             this.btnSaveNewImage = new System.Windows.Forms.Button();
             this.cmbEdgeDetection = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.hellFilterButton = new System.Windows.Forms.Button();
-            this.miamiFilterButton = new System.Windows.Forms.Button();
-            this.zenFilterButton = new System.Windows.Forms.Button();
+            this.labelFilters = new System.Windows.Forms.Label();
+            this.btnHellFilter = new System.Windows.Forms.Button();
+            this.btnMiamiFilter = new System.Windows.Forms.Button();
+            this.btnZenFilter = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.resetButton = new System.Windows.Forms.Button();
-            this.xFilterLabel = new System.Windows.Forms.Label();
-            this.yFilterLabel = new System.Windows.Forms.Label();
+            this.btnResetFilters = new System.Windows.Forms.Button();
+            this.labelXFilter = new System.Windows.Forms.Label();
+            this.labelYFilter = new System.Windows.Forms.Label();
             this.listBoxXFilter = new System.Windows.Forms.ListBox();
             this.listBoxYFilter = new System.Windows.Forms.ListBox();
-            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.labelThreshold = new System.Windows.Forms.Label();
             this.trackBarThreshold = new System.Windows.Forms.TrackBar();
-            this.plotCoordsLabel = new System.Windows.Forms.Label();
+            this.labelPlotCoords = new System.Windows.Forms.Label();
             this.textBoxData = new System.Windows.Forms.TextBox();
-            this.buttonPlotCoords = new System.Windows.Forms.Button();
-            this.resultImageLabel = new System.Windows.Forms.Label();
+            this.btnPlotCoords = new System.Windows.Forms.Button();
+            this.labelResultImage = new System.Windows.Forms.Label();
             this.pictureBoxResult = new System.Windows.Forms.PictureBox();
-            this.buttonSaveAs = new System.Windows.Forms.Button();
-            this.applyXYFiltersButton = new System.Windows.Forms.Button();
-            this.errorLabel = new System.Windows.Forms.Label();
+            this.btnSaveAs = new System.Windows.Forms.Button();
+            this.btnApplyXYFilters = new System.Windows.Forms.Button();
+            this.labelError = new System.Windows.Forms.Label();
             this.chartarea = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -68,14 +68,12 @@
             this.picPreview.BackColor = System.Drawing.Color.Silver;
             this.picPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPreview.Cursor = System.Windows.Forms.Cursors.Cross;
             this.picPreview.Location = new System.Drawing.Point(77, 76);
             this.picPreview.Name = "picPreview";
             this.picPreview.Size = new System.Drawing.Size(263, 175);
             this.picPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPreview.TabIndex = 13;
             this.picPreview.TabStop = false;
-            this.picPreview.Click += new System.EventHandler(this.picPreview_Click);
             // 
             // btnOpenOriginal
             // 
@@ -126,78 +124,77 @@
             this.cmbEdgeDetection.TabIndex = 20;
             this.cmbEdgeDetection.SelectedIndexChanged += new System.EventHandler(this.NeighbourCountValueChangedEventHandler);
             // 
-            // label1
+            // labelFilters
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(427, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Filters";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.labelFilters.AutoSize = true;
+            this.labelFilters.Location = new System.Drawing.Point(427, 15);
+            this.labelFilters.Name = "labelFilters";
+            this.labelFilters.Size = new System.Drawing.Size(46, 17);
+            this.labelFilters.TabIndex = 21;
+            this.labelFilters.Text = "Filters";
             // 
-            // hellFilterButton
+            // btnHellFilter
             // 
-            this.hellFilterButton.Location = new System.Drawing.Point(430, 48);
-            this.hellFilterButton.Name = "hellFilterButton";
-            this.hellFilterButton.Size = new System.Drawing.Size(68, 44);
-            this.hellFilterButton.TabIndex = 22;
-            this.hellFilterButton.Text = "Hell Filter";
-            this.hellFilterButton.UseVisualStyleBackColor = true;
-            this.hellFilterButton.Click += new System.EventHandler(this.button1_Click);
+            this.btnHellFilter.Location = new System.Drawing.Point(430, 48);
+            this.btnHellFilter.Name = "btnHellFilter";
+            this.btnHellFilter.Size = new System.Drawing.Size(68, 44);
+            this.btnHellFilter.TabIndex = 22;
+            this.btnHellFilter.Text = "Hell Filter";
+            this.btnHellFilter.UseVisualStyleBackColor = true;
+            this.btnHellFilter.Click += new System.EventHandler(this.BtnHellFilter_Click);
             // 
-            // miamiFilterButton
+            // btnMiamiFilter
             // 
-            this.miamiFilterButton.Location = new System.Drawing.Point(504, 48);
-            this.miamiFilterButton.Name = "miamiFilterButton";
-            this.miamiFilterButton.Size = new System.Drawing.Size(68, 44);
-            this.miamiFilterButton.TabIndex = 23;
-            this.miamiFilterButton.Text = "Miami Filter";
-            this.miamiFilterButton.UseVisualStyleBackColor = true;
-            this.miamiFilterButton.Click += new System.EventHandler(this.button2_Click);
+            this.btnMiamiFilter.Location = new System.Drawing.Point(504, 48);
+            this.btnMiamiFilter.Name = "btnMiamiFilter";
+            this.btnMiamiFilter.Size = new System.Drawing.Size(68, 44);
+            this.btnMiamiFilter.TabIndex = 23;
+            this.btnMiamiFilter.Text = "Miami Filter";
+            this.btnMiamiFilter.UseVisualStyleBackColor = true;
+            this.btnMiamiFilter.Click += new System.EventHandler(this.BtnMiamiFilter_Click);
             // 
-            // zenFilterButton
+            // btnZenFilter
             // 
-            this.zenFilterButton.Location = new System.Drawing.Point(578, 48);
-            this.zenFilterButton.Name = "zenFilterButton";
-            this.zenFilterButton.Size = new System.Drawing.Size(68, 44);
-            this.zenFilterButton.TabIndex = 24;
-            this.zenFilterButton.Text = "Zen Filter";
-            this.zenFilterButton.UseVisualStyleBackColor = true;
-            this.zenFilterButton.Click += new System.EventHandler(this.button3_Click);
+            this.btnZenFilter.Location = new System.Drawing.Point(578, 48);
+            this.btnZenFilter.Name = "btnZenFilter";
+            this.btnZenFilter.Size = new System.Drawing.Size(68, 44);
+            this.btnZenFilter.TabIndex = 24;
+            this.btnZenFilter.Text = "Zen Filter";
+            this.btnZenFilter.UseVisualStyleBackColor = true;
+            this.btnZenFilter.Click += new System.EventHandler(this.BtnZenFilter_Click);
             // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // resetButton
+            // btnResetFilters
             // 
-            this.resetButton.Location = new System.Drawing.Point(430, 98);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(216, 23);
-            this.resetButton.TabIndex = 25;
-            this.resetButton.Text = "reset all";
-            this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.btnResetFilters.Location = new System.Drawing.Point(430, 98);
+            this.btnResetFilters.Name = "btnResetFilters";
+            this.btnResetFilters.Size = new System.Drawing.Size(216, 23);
+            this.btnResetFilters.TabIndex = 25;
+            this.btnResetFilters.Text = "reset all";
+            this.btnResetFilters.UseVisualStyleBackColor = true;
+            this.btnResetFilters.Click += new System.EventHandler(this.BtnResetFilters_Click);
             // 
-            // xFilterLabel
+            // labelXFilter
             // 
-            this.xFilterLabel.AutoSize = true;
-            this.xFilterLabel.Location = new System.Drawing.Point(414, 146);
-            this.xFilterLabel.Name = "xFilterLabel";
-            this.xFilterLabel.Size = new System.Drawing.Size(52, 17);
-            this.xFilterLabel.TabIndex = 26;
-            this.xFilterLabel.Text = "X Filter";
+            this.labelXFilter.AutoSize = true;
+            this.labelXFilter.Location = new System.Drawing.Point(414, 146);
+            this.labelXFilter.Name = "labelXFilter";
+            this.labelXFilter.Size = new System.Drawing.Size(52, 17);
+            this.labelXFilter.TabIndex = 26;
+            this.labelXFilter.Text = "X Filter";
             // 
             // yFilterLabel
             // 
-            this.yFilterLabel.AutoSize = true;
-            this.yFilterLabel.Location = new System.Drawing.Point(562, 146);
-            this.yFilterLabel.Name = "yFilterLabel";
-            this.yFilterLabel.Size = new System.Drawing.Size(52, 17);
-            this.yFilterLabel.TabIndex = 27;
-            this.yFilterLabel.Text = "Y Filter";
+            this.labelYFilter.AutoSize = true;
+            this.labelYFilter.Location = new System.Drawing.Point(562, 146);
+            this.labelYFilter.Name = "yFilterLabel";
+            this.labelYFilter.Size = new System.Drawing.Size(52, 17);
+            this.labelYFilter.TabIndex = 27;
+            this.labelYFilter.Text = "Y Filter";
             // 
             // listBoxXFilter
             // 
@@ -217,7 +214,6 @@
             this.listBoxXFilter.Name = "listBoxXFilter";
             this.listBoxXFilter.Size = new System.Drawing.Size(120, 84);
             this.listBoxXFilter.TabIndex = 28;
-            this.listBoxXFilter.SelectedIndexChanged += new System.EventHandler(this.listBoxXFilter_SelectedIndexChanged);
             // 
             // listBoxYFilter
             // 
@@ -238,14 +234,14 @@
             this.listBoxYFilter.Size = new System.Drawing.Size(120, 84);
             this.listBoxYFilter.TabIndex = 29;
             // 
-            // thresholdLabel
+            // labelThreshold
             // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Location = new System.Drawing.Point(414, 275);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(72, 17);
-            this.thresholdLabel.TabIndex = 30;
-            this.thresholdLabel.Text = "Threshold";
+            this.labelThreshold.AutoSize = true;
+            this.labelThreshold.Location = new System.Drawing.Point(414, 275);
+            this.labelThreshold.Name = "labelThreshold";
+            this.labelThreshold.Size = new System.Drawing.Size(72, 17);
+            this.labelThreshold.TabIndex = 30;
+            this.labelThreshold.Text = "Threshold";
             // 
             // trackBarThreshold
             // 
@@ -257,14 +253,14 @@
             this.trackBarThreshold.TabIndex = 31;
             this.trackBarThreshold.Value = 100;
             // 
-            // plotCoordsLabel
+            // labelPlotCoords
             // 
-            this.plotCoordsLabel.AutoSize = true;
-            this.plotCoordsLabel.Location = new System.Drawing.Point(729, 266);
-            this.plotCoordsLabel.Name = "plotCoordsLabel";
-            this.plotCoordsLabel.Size = new System.Drawing.Size(167, 17);
-            this.plotCoordsLabel.TabIndex = 32;
-            this.plotCoordsLabel.Text = "Image Green Data Points";
+            this.labelPlotCoords.AutoSize = true;
+            this.labelPlotCoords.Location = new System.Drawing.Point(729, 266);
+            this.labelPlotCoords.Name = "labelPlotCoords";
+            this.labelPlotCoords.Size = new System.Drawing.Size(167, 17);
+            this.labelPlotCoords.TabIndex = 32;
+            this.labelPlotCoords.Text = "Image Green Data Points";
             // 
             // textBoxData
             // 
@@ -277,26 +273,25 @@
             this.textBoxData.Size = new System.Drawing.Size(264, 82);
             this.textBoxData.TabIndex = 33;
             this.textBoxData.TabStop = false;
-            this.textBoxData.TextChanged += new System.EventHandler(this.textBoxData_TextChanged);
             // 
-            // buttonPlotCoords
+            // btnPlotCoords
             // 
-            this.buttonPlotCoords.Location = new System.Drawing.Point(732, 383);
-            this.buttonPlotCoords.Name = "buttonPlotCoords";
-            this.buttonPlotCoords.Size = new System.Drawing.Size(264, 23);
-            this.buttonPlotCoords.TabIndex = 34;
-            this.buttonPlotCoords.Text = "Plot Coords";
-            this.buttonPlotCoords.UseVisualStyleBackColor = true;
-            this.buttonPlotCoords.Click += new System.EventHandler(this.buttonPlotCoords_Click);
+            this.btnPlotCoords.Location = new System.Drawing.Point(732, 383);
+            this.btnPlotCoords.Name = "btnPlotCoords";
+            this.btnPlotCoords.Size = new System.Drawing.Size(264, 23);
+            this.btnPlotCoords.TabIndex = 34;
+            this.btnPlotCoords.Text = "Plot Coords";
+            this.btnPlotCoords.UseVisualStyleBackColor = true;
+            this.btnPlotCoords.Click += new System.EventHandler(this.btnPlotCoords_Click);
             // 
-            // resultImageLabel
+            // labelResultImage
             // 
-            this.resultImageLabel.AutoSize = true;
-            this.resultImageLabel.Location = new System.Drawing.Point(729, 15);
-            this.resultImageLabel.Name = "resultImageLabel";
-            this.resultImageLabel.Size = new System.Drawing.Size(90, 17);
-            this.resultImageLabel.TabIndex = 35;
-            this.resultImageLabel.Text = "Result Image";
+            this.labelResultImage.AutoSize = true;
+            this.labelResultImage.Location = new System.Drawing.Point(729, 15);
+            this.labelResultImage.Name = "labelResultImage";
+            this.labelResultImage.Size = new System.Drawing.Size(90, 17);
+            this.labelResultImage.TabIndex = 35;
+            this.labelResultImage.Text = "Result Image";
             // 
             // pictureBoxResult
             // 
@@ -305,37 +300,35 @@
             this.pictureBoxResult.Size = new System.Drawing.Size(264, 175);
             this.pictureBoxResult.TabIndex = 36;
             this.pictureBoxResult.TabStop = false;
-            this.pictureBoxResult.Click += new System.EventHandler(this.pictureBoxResult_Click);
             // 
-            // buttonSaveAs
+            // btnSaveAs
             // 
-            this.buttonSaveAs.Location = new System.Drawing.Point(732, 229);
-            this.buttonSaveAs.Name = "buttonSaveAs";
-            this.buttonSaveAs.Size = new System.Drawing.Size(264, 34);
-            this.buttonSaveAs.TabIndex = 37;
-            this.buttonSaveAs.Text = "Save the result";
-            this.buttonSaveAs.UseVisualStyleBackColor = true;
-            this.buttonSaveAs.Visible = false;
+            this.btnSaveAs.Location = new System.Drawing.Point(732, 229);
+            this.btnSaveAs.Name = "btnSaveAs";
+            this.btnSaveAs.Size = new System.Drawing.Size(264, 34);
+            this.btnSaveAs.TabIndex = 37;
+            this.btnSaveAs.Text = "Save the result";
+            this.btnSaveAs.UseVisualStyleBackColor = true;
+            this.btnSaveAs.Visible = false;
             // 
-            // applyXYFiltersButton
+            // btnApplyXYFilters
             // 
-            this.applyXYFiltersButton.Location = new System.Drawing.Point(471, 347);
-            this.applyXYFiltersButton.Name = "applyXYFiltersButton";
-            this.applyXYFiltersButton.Size = new System.Drawing.Size(172, 30);
-            this.applyXYFiltersButton.TabIndex = 38;
-            this.applyXYFiltersButton.Text = "Apply X / Y filters";
-            this.applyXYFiltersButton.UseVisualStyleBackColor = true;
-            this.applyXYFiltersButton.Click += new System.EventHandler(this.button5_Click);
+            this.btnApplyXYFilters.Location = new System.Drawing.Point(471, 347);
+            this.btnApplyXYFilters.Name = "btnApplyXYFilters";
+            this.btnApplyXYFilters.Size = new System.Drawing.Size(172, 30);
+            this.btnApplyXYFilters.TabIndex = 38;
+            this.btnApplyXYFilters.Text = "Apply X / Y filters";
+            this.btnApplyXYFilters.UseVisualStyleBackColor = true;
+            this.btnApplyXYFilters.Click += new System.EventHandler(this.BtnApplyXYFilters_Click);
             // 
-            // errorLabel
+            // labelError
             // 
-            this.errorLabel.AutoSize = true;
-            this.errorLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.errorLabel.Location = new System.Drawing.Point(453, 129);
-            this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(0, 17);
-            this.errorLabel.TabIndex = 39;
-            this.errorLabel.Click += new System.EventHandler(this.label7_Click);
+            this.labelError.AutoSize = true;
+            this.labelError.ForeColor = System.Drawing.Color.Crimson;
+            this.labelError.Location = new System.Drawing.Point(453, 129);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(0, 17);
+            this.labelError.TabIndex = 39;
             // 
             // chartarea
             // 
@@ -352,32 +345,31 @@
             this.chartarea.Size = new System.Drawing.Size(378, 319);
             this.chartarea.TabIndex = 40;
             this.chartarea.Text = "chartarea";
-            this.chartarea.Click += new System.EventHandler(this.chartarea_Click);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1042, 427);
             this.Controls.Add(this.chartarea);
-            this.Controls.Add(this.errorLabel);
-            this.Controls.Add(this.applyXYFiltersButton);
-            this.Controls.Add(this.buttonSaveAs);
+            this.Controls.Add(this.labelError);
+            this.Controls.Add(this.btnApplyXYFilters);
+            this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.pictureBoxResult);
-            this.Controls.Add(this.resultImageLabel);
-            this.Controls.Add(this.buttonPlotCoords);
+            this.Controls.Add(this.labelResultImage);
+            this.Controls.Add(this.btnPlotCoords);
             this.Controls.Add(this.textBoxData);
-            this.Controls.Add(this.plotCoordsLabel);
+            this.Controls.Add(this.labelPlotCoords);
             this.Controls.Add(this.trackBarThreshold);
-            this.Controls.Add(this.thresholdLabel);
+            this.Controls.Add(this.labelThreshold);
             this.Controls.Add(this.listBoxYFilter);
             this.Controls.Add(this.listBoxXFilter);
-            this.Controls.Add(this.yFilterLabel);
-            this.Controls.Add(this.xFilterLabel);
-            this.Controls.Add(this.resetButton);
-            this.Controls.Add(this.zenFilterButton);
-            this.Controls.Add(this.miamiFilterButton);
-            this.Controls.Add(this.hellFilterButton);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelYFilter);
+            this.Controls.Add(this.labelXFilter);
+            this.Controls.Add(this.btnResetFilters);
+            this.Controls.Add(this.btnZenFilter);
+            this.Controls.Add(this.btnMiamiFilter);
+            this.Controls.Add(this.btnHellFilter);
+            this.Controls.Add(this.labelFilters);
             this.Controls.Add(this.cmbEdgeDetection);
             this.Controls.Add(this.btnSaveNewImage);
             this.Controls.Add(this.btnOpenOriginal);
@@ -405,26 +397,26 @@
         private System.Windows.Forms.Button btnOpenOriginal;
         private System.Windows.Forms.Button btnSaveNewImage;
         private System.Windows.Forms.ComboBox cmbEdgeDetection;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button hellFilterButton;
-        private System.Windows.Forms.Button miamiFilterButton;
-        private System.Windows.Forms.Button zenFilterButton;
+        private System.Windows.Forms.Label labelFilters;
+        private System.Windows.Forms.Button btnHellFilter;
+        private System.Windows.Forms.Button btnMiamiFilter;
+        private System.Windows.Forms.Button btnZenFilter;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.Button resetButton;
-        private System.Windows.Forms.Button buttonSaveAs;
+        private System.Windows.Forms.Button btnResetFilters;
+        private System.Windows.Forms.Button btnSaveAs;
         public System.Windows.Forms.PictureBox pictureBoxResult;
-        private System.Windows.Forms.Label resultImageLabel;
-        private System.Windows.Forms.Button buttonPlotCoords;
+        private System.Windows.Forms.Label labelResultImage;
+        private System.Windows.Forms.Button btnPlotCoords;
         private System.Windows.Forms.TextBox textBoxData;
-        private System.Windows.Forms.Label plotCoordsLabel;
+        private System.Windows.Forms.Label labelPlotCoords;
         private System.Windows.Forms.TrackBar trackBarThreshold;
-        private System.Windows.Forms.Label thresholdLabel;
+        private System.Windows.Forms.Label labelThreshold;
         private System.Windows.Forms.ListBox listBoxYFilter;
         private System.Windows.Forms.ListBox listBoxXFilter;
-        private System.Windows.Forms.Label yFilterLabel;
-        private System.Windows.Forms.Label xFilterLabel;
-        private System.Windows.Forms.Button applyXYFiltersButton;
-        private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Label labelYFilter;
+        private System.Windows.Forms.Label labelXFilter;
+        private System.Windows.Forms.Button btnApplyXYFilters;
+        private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartarea;
     }
 }

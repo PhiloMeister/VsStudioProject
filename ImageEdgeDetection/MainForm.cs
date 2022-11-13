@@ -5,11 +5,7 @@
 */
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
@@ -37,15 +33,15 @@ namespace ImageEdgeDetection
             //list box for the Y algo detection
             listBoxYFilter.SelectedIndex = 0;
             btnSaveNewImage.Enabled = false;
-            hellFilterButton.Enabled = false;
-            miamiFilterButton.Enabled = false;
-            zenFilterButton.Enabled = false;
-            resetButton.Enabled = false;
+            btnHellFilter.Enabled = false;
+            btnMiamiFilter.Enabled = false;
+            btnZenFilter.Enabled = false;
+            btnResetFilters.Enabled = false;
             listBoxXFilter.Enabled = false;
             listBoxYFilter.Enabled = false;
             trackBarThreshold.Enabled = false;
-            applyXYFiltersButton.Enabled = false;
-            buttonPlotCoords.Enabled = false;
+            btnApplyXYFilters.Enabled = false;
+            btnPlotCoords.Enabled = false;
         }
 
         private void btnOpenOriginal_Click(object sender, EventArgs e)
@@ -75,10 +71,10 @@ namespace ImageEdgeDetection
         private void UpdateComponentImagechoosenSuccess()
         {
             btnSaveNewImage.Enabled = true;
-            hellFilterButton.Enabled = true;
-            miamiFilterButton.Enabled = true;
-            zenFilterButton.Enabled = true;
-            resetButton.Enabled = true;
+            btnHellFilter.Enabled = true;
+            btnMiamiFilter.Enabled = true;
+            btnZenFilter.Enabled = true;
+            btnResetFilters.Enabled = true;
         }
 
         private void btnSaveNewImage_Click(object sender, EventArgs e)
@@ -109,6 +105,7 @@ namespace ImageEdgeDetection
 
                     StreamWriter streamWriter = new StreamWriter(sfd.FileName, false);
                     resultBitmap.Save(streamWriter.BaseStream, imgFormat);
+                    // clean and close the streamWriter
                     streamWriter.Flush();
                     streamWriter.Close();
 
@@ -125,10 +122,9 @@ namespace ImageEdgeDetection
                 return;
             }
           
-
+            // if a filter is applied, make the image edge detection parameters available
             if (applyFilter != null)
             {
-
                 filteredColoredBitmap = applyFilter;
 
                 UpdateComponentFilterApplied();
@@ -137,14 +133,15 @@ namespace ImageEdgeDetection
             
         }
 
+        // make image edge detection parameters available
         private void UpdateComponentFilterApplied()
         {
             cmbEdgeDetection.Enabled = true;
             listBoxXFilter.Enabled = true;
             listBoxYFilter.Enabled = true;
             trackBarThreshold.Enabled = true;
-            applyXYFiltersButton.Enabled = true;
-            buttonPlotCoords.Enabled = true;
+            btnApplyXYFilters.Enabled = true;
+            btnPlotCoords.Enabled = true;
         }
 
         private void ApplyEdgeFilter()
@@ -157,7 +154,7 @@ namespace ImageEdgeDetection
 
             Bitmap selectedSource = null;
             Bitmap bitmapResult = null;
-            // the selected source is the bitmap image who has is coloFiltered
+            // the selected source is the bitmap image that has is coloFiltered
             selectedSource = filteredColoredBitmap;
                 
             
@@ -246,16 +243,10 @@ namespace ImageEdgeDetection
 
         private void NeighbourCountValueChangedEventHandler(object sender, EventArgs e)
         {
-
             ApplyEdgeFilter();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnZenFilter_Click(object sender, EventArgs e)
         {
             ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 10, 1, 1));
             ApplyEdgeFilter();
@@ -263,25 +254,21 @@ namespace ImageEdgeDetection
 
         
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnMiamiFilter_Click(object sender, EventArgs e)
         {
             ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 1));
             ApplyEdgeFilter();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnHellFilter_Click(object sender, EventArgs e)
         {
             ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 15));
             ApplyEdgeFilter();
         }
 
-        private void picPreview_Click(object sender, EventArgs e)
-        {
-
-        }
         //back button for filter
         //clear all filters on the picture box by giving the untouchedPreviewBitmap image
-        private void resetButton_Click(object sender, EventArgs e)
+        private void BtnResetFilters_Click(object sender, EventArgs e)
         {
             picPreview.Image = untouchedPreviewBitmap;
             filteredColoredBitmap = untouchedPreviewBitmap;
@@ -290,37 +277,40 @@ namespace ImageEdgeDetection
             listBoxXFilter.Enabled = false;
             listBoxYFilter.Enabled = false;
             trackBarThreshold.Enabled = false;
-            applyXYFiltersButton.Enabled = false;
-            buttonPlotCoords.Enabled = false;
+            btnApplyXYFilters.Enabled = false;
+            btnPlotCoords.Enabled = false;
 
             pictureBoxResult.Image = null;
             textBoxData.Text = "";
 
         }
         //apply x y filters button
-        private void button5_Click(object sender, EventArgs e)
-        {
+        private void BtnApplyXYFilters_Click(object sender, EventArgs e)
+        {   
+            // Both X and Y filters must be selected
             if (listBoxXFilter.SelectedItem.ToString().Length > 0 && listBoxYFilter.SelectedItem.ToString().Length > 0)
             {
-                filter(listBoxXFilter.SelectedItem.ToString(), listBoxYFilter.SelectedItem.ToString());
+                Filter(listBoxXFilter.SelectedItem.ToString(), listBoxYFilter.SelectedItem.ToString());
                 // pic preview took the filteredcoloredBitmap
                 ConvertToXYCoord(filteredColoredBitmap);
-                errorLabel.Text = "";
+                labelError.Text = "";
             }
-            else
+            else //if the 2 filters are not selected
             {
-                errorLabel.Text = "2 filters must be selected";
+                labelError.Text = "2 filters must be selected";
             }
         }
+
+
         public void ConvertToXYCoord(Bitmap pictureBoxelem)
         {
             string coord = "";
             int width = pictureBoxelem.Width;
             int height = pictureBoxelem.Height;
-            System.Drawing.Size size = new System.Drawing.Size(width, height);
+            Size size = new Size(width, height);
             Bitmap bitmapIMG = new Bitmap(pictureBoxResult.Image, width, height);
 
-            List<ImageEdgeDetection.coord> coorArray = new List<ImageEdgeDetection.coord>();
+            List<coord> coorArray = new List<coord>();
 
             int x = 0;
             int y = 0;
@@ -334,7 +324,7 @@ namespace ImageEdgeDetection
                     Color pixelColor = Color.FromArgb(bitmapIMG.GetPixel(x, y).ToArgb());
                     if (pixelColor.Name != "ff000000" && pixelColor.Name != "0")
                     {
-                        //coord = coord + x.ToString() + "," + y.ToString() + "|";
+
                         newX = Convert.ToDouble(x);
                         newY = Convert.ToDouble(y);
                         int angle = 110;
@@ -343,10 +333,6 @@ namespace ImageEdgeDetection
                         newX = newX * Math.Cos(angle) - newY * Math.Sin(angle);
                         newY = newX * Math.Sin(angle) + newY * Math.Cos(angle);
 
-                        //Image.coord imgCoord = new Image.coord();
-                        //imgCoord.x = newX;
-                        //imgCoord.y = newY;
-                        //coorArray.Add(imgCoord);
                         coord = coord + newX.ToString() + "," + newY.ToString() + "|";
                     }
                 }
@@ -355,7 +341,9 @@ namespace ImageEdgeDetection
 
 
         }
-        public void filter(string xfilter, string yfilter)
+
+        //Convert the image by applying the selected X and Y filters
+        public void Filter(string xfilter, string yfilter)
         {
             double[,] xFilterMatrix;
             double[,] yFilterMatrix;
@@ -459,19 +447,6 @@ namespace ImageEdgeDetection
                 Marshal.Copy(newbitmapData.Scan0, pixelbuff, 0, pixelbuff.Length);
                 newbitmap.UnlockBits(newbitmapData);
 
-
-                double blue = 0.0;
-                double green = 0.0;
-                double red = 0.0;
-
-                //int filterWidth = filterMatrix.GetLength(1);
-                //int filterHeight = filterMatrix.GetLength(0);
-
-                //int filterOffset = (filterWidth - 1) / 2;
-                //int calcOffset = 0;
-
-                //int byteOffset = 0;
-
                 double blueX = 0.0;
                 double greenX = 0.0;
                 double redX = 0.0;
@@ -495,8 +470,8 @@ namespace ImageEdgeDetection
                     for (int offsetX = filterOffset; offsetX <
                         newbitmap.Width - filterOffset; offsetX++)
                     {
-                        blueX = greenX = redX = 0;
-                        blueY = greenY = redY = 0;
+                        blueX = greenX = redX = 0.0;
+                        blueY = greenY = redY = 0.0;
 
                         blueTotal = greenTotal = redTotal = 0.0;
 
@@ -540,11 +515,9 @@ namespace ImageEdgeDetection
                             }
                         }
 
-                        //blueTotal = Math.Sqrt((blueX * blueX) + (blueY * blueY));
-                        blueTotal = 0;
+                        blueTotal = 0.0;
                         greenTotal = Math.Sqrt((greenX * greenX) + (greenY * greenY));
-                        //redTotal = Math.Sqrt((redX * redX) + (redY * redY));
-                        redTotal = 0;
+                        redTotal = 0.0;
 
                         if (blueTotal > 255)
                         { blueTotal = 255; }
@@ -560,7 +533,7 @@ namespace ImageEdgeDetection
                         {
                             if (greenTotal < Convert.ToInt32(trackBarThreshold.Value))
                             {
-                                greenTotal = 0;
+                                greenTotal = 0.0;
                             }
                             else
                             {
@@ -577,7 +550,7 @@ namespace ImageEdgeDetection
                         if (redTotal > 255)
                         { redTotal = 255; }
                         else if (redTotal < 0)
-                        { redTotal = 0; }
+                        { redTotal = 0.0; }
 
                         resultbuff[byteOffset] = (byte)(blueTotal);
                         resultbuff[byteOffset + 1] = (byte)(greenTotal);
@@ -599,24 +572,8 @@ namespace ImageEdgeDetection
             }
             else
             {
-                errorLabel.Text = "You must load an image";
-               
+                labelError.Text = "You must load an image";              
             }
-        }
-        
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBoxResult_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBoxXFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -627,7 +584,7 @@ namespace ImageEdgeDetection
 
         }
 
-        private void buttonPlotCoords_Click(object sender, EventArgs e)
+        private void btnPlotCoords_Click(object sender, EventArgs e)
         
         {
                 chartarea.Series["plot"].Points.Clear();
@@ -654,25 +611,14 @@ namespace ImageEdgeDetection
 
                             chartarea.Series["plot"].Points.AddXY(newX, newY);
                         }
-
                     }
-                }
-
-            
+                }         
         }
 
-        private void chartarea_Click(object sender, EventArgs e)
-        {
-
-        }
         private void Close_Click(object sender, EventArgs e)
         {
             chartarea.Visible = false;
         }
 
-        private void textBoxData_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
