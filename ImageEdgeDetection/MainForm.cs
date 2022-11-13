@@ -44,7 +44,7 @@ namespace ImageEdgeDetection
             btnPlotCoords.Enabled = false;
         }
 
-        private void btnOpenOriginal_Click(object sender, EventArgs e)
+        private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select an image file.";
@@ -77,7 +77,7 @@ namespace ImageEdgeDetection
             btnResetFilters.Enabled = true;
         }
 
-        private void btnSaveNewImage_Click(object sender, EventArgs e)
+        private void BtnSaveNewImage_Click(object sender, EventArgs e)
         {
            
             ApplyEdgeFilter();
