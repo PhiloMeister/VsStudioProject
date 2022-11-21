@@ -8,16 +8,9 @@ namespace ImageEdgeDetectionUnitTesting
     public class UnitTest1
     {
         [TestMethod]
-        public void TestNonNullImage_ApplyEdgeFilter()
+        public void ApplyColorFilter_IfImageGivenIsnull()
         {
-            //fill out needed variables
-
-
-            //format image into Bitmap
-            var imgTest = Image.FromFile("UnitTestExample2.jpg");
-
-            //ApplyEdgeFilter(imgTest);
-
+            
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using ImageEdgeDetection.Controllers;
 using PictureBox.Image.Testes;
 
 namespace ImageEdgeDetection
@@ -20,7 +21,7 @@ namespace ImageEdgeDetection
         private Bitmap untouchedPreviewBitmap = null;
         private Bitmap resultBitmap = null;
         private Bitmap filteredColoredBitmap = null;
-      
+        Filters filters = new Filters();
 
         public MainForm()
         {
@@ -46,29 +47,11 @@ namespace ImageEdgeDetection
 
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select an image file.";
-            ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
-            ofd.Filter += "|Bitmap Images(*.bmp)|*.bmp";
-
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                //Get the image into the original bitmap
-                //The original bitmap is not dimensioned for our square
-                StreamReader streamReader = new StreamReader(ofd.FileName);
-                originalBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
-                streamReader.Close();
-                //PreviewBitmap is like the original one but redimensioned for our square
-                //PicPreview is the PICTUREBOX
-                untouchedPreviewBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
-                //We give the redimensioned image to the square
-                filteredColoredBitmap = untouchedPreviewBitmap;
-                picPreview.Image = filteredColoredBitmap;
-                UpdateComponentImagechoosenSuccess();
-            }
+            filters.openImageDialog(picPreview);
+            UpdateComponentImagechoosenSuccess();
         }
 
-        private void UpdateComponentImagechoosenSuccess()
+        public void UpdateComponentImagechoosenSuccess()
         {
             btnSaveNewImage.Enabled = true;
             btnHellFilter.Enabled = true;
@@ -144,7 +127,7 @@ namespace ImageEdgeDetection
             btnPlotCoords.Enabled = true;
         }
 
-        private void ApplyEdgeFilter(Bitmap untouchedPreviewBitmap)
+        public void ApplyEdgeFilter(Bitmap untouchedPreviewBitmap)
         {
             // if no image
             if (untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
@@ -156,7 +139,6 @@ namespace ImageEdgeDetection
             Bitmap bitmapResult = null;
             // the selected source is the bitmap image that has is coloFiltered
             selectedSource = filteredColoredBitmap;
-                
             
             if (selectedSource != null)
             {
