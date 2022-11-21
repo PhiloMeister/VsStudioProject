@@ -1,20 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEdgeDetection", "ImageEdgeDetection\ImageEdgeDetection.csproj", "{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEdgeDetectionUnitTesting", "ImageEdgeDetectionUnitTesting\ImageEdgeDetectionUnitTesting.csproj", "{3B4AC5E0-13B6-480F-AAE6-721905749158}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Debug|Any CPU.Build.0 = Debug|x86
 		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Debug|x86.ActiveCfg = Debug|x86
 		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Debug|x86.Build.0 = Debug|x86
+		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Release|Any CPU.ActiveCfg = Release|x86
+		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Release|Any CPU.Build.0 = Release|x86
 		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Release|x86.ActiveCfg = Release|x86
 		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}.Release|x86.Build.0 = Release|x86
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Debug|x86.Build.0 = Debug|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Release|x86.ActiveCfg = Release|Any CPU
+		{3B4AC5E0-13B6-480F-AAE6-721905749158}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -282,7 +282,7 @@
             this.btnPlotCoords.TabIndex = 34;
             this.btnPlotCoords.Text = "Plot Coords";
             this.btnPlotCoords.UseVisualStyleBackColor = true;
-            this.btnPlotCoords.Click += new System.EventHandler(this.btnPlotCoords_Click);
+            this.btnPlotCoords.Click += new System.EventHandler(this.BtnPlotCoords_Click);
             // 
             // labelResultImage
             // 

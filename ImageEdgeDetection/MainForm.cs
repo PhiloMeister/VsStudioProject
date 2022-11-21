@@ -80,7 +80,7 @@ namespace ImageEdgeDetection
         private void BtnSaveNewImage_Click(object sender, EventArgs e)
         {
            
-            ApplyEdgeFilter();
+            //ApplyEdgeFilter();
 
             if (resultBitmap != null)
             {
@@ -310,7 +310,7 @@ namespace ImageEdgeDetection
             Size size = new Size(width, height);
             Bitmap bitmapIMG = new Bitmap(pictureBoxResult.Image, width, height);
 
-            List<coord> coorArray = new List<coord>();
+            List<Coord> coorArray = new List<Coord>();
 
             int x = 0;
             int y = 0;
@@ -584,7 +584,7 @@ namespace ImageEdgeDetection
 
         }
 
-        private void btnPlotCoords_Click(object sender, EventArgs e)
+        private void BtnPlotCoords_Click(object sender, EventArgs e)
         
         {
                 chartarea.Series["plot"].Points.Clear();
