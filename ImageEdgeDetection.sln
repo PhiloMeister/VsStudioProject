@@ -5,7 +5,10 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEdgeDetection", "ImageEdgeDetection\ImageEdgeDetection.csproj", "{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEdgeDetectionUnitTesting", "ImageEdgeDetectionUnitTesting\ImageEdgeDetectionUnitTesting.csproj", "{3B4AC5E0-13B6-480F-AAE6-721905749158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageEdgeDetectionUnitTesting", "ImageEdgeDetectionUnitTesting\ImageEdgeDetectionUnitTesting.csproj", "{3B4AC5E0-13B6-480F-AAE6-721905749158}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366} = {7DBEE0D3-2DBD-4E8A-BA07-BDB1C95EB366}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

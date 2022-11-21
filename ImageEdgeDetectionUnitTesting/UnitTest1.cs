@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ImageEdgeDetectionUnitTesting;
+using ImageEdgeDetection;
 using System.Drawing;
 
 namespace ImageEdgeDetectionUnitTesting
@@ -10,13 +10,13 @@ namespace ImageEdgeDetectionUnitTesting
         [TestMethod]
         public void TestNonNullImage_ApplyEdgeFilter()
         {
-            //fill out needed variables 
+            //fill out needed variables
 
 
             //format image into Bitmap
             var imgTest = Image.FromFile("UnitTestExample2.jpg");
 
-            
+            //ApplyEdgeFilter(imgTest);
 
         }
     }

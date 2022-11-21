@@ -144,7 +144,7 @@ namespace ImageEdgeDetection
             btnPlotCoords.Enabled = true;
         }
 
-        private void ApplyEdgeFilter()
+        private void ApplyEdgeFilter(Bitmap untouchedPreviewBitmap)
         {
             // if no image
             if (untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
@@ -243,13 +243,13 @@ namespace ImageEdgeDetection
 
         private void NeighbourCountValueChangedEventHandler(object sender, EventArgs e)
         {
-            ApplyEdgeFilter();
+            ApplyEdgeFilter(filteredColoredBitmap);
         }
 
         private void BtnZenFilter_Click(object sender, EventArgs e)
         {
             ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 10, 1, 1));
-            ApplyEdgeFilter();
+            ApplyEdgeFilter(filteredColoredBitmap);
         }
 
         
@@ -257,13 +257,13 @@ namespace ImageEdgeDetection
         private void BtnMiamiFilter_Click(object sender, EventArgs e)
         {
             ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 1));
-            ApplyEdgeFilter();
+            ApplyEdgeFilter(filteredColoredBitmap);
         }
 
         private void BtnHellFilter_Click(object sender, EventArgs e)
         {
             ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 15));
-            ApplyEdgeFilter();
+            ApplyEdgeFilter(filteredColoredBitmap);
         }
 
         //back button for filter
