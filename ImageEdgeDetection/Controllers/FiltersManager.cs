@@ -8,6 +8,6 @@ namespace ImageEdgeDetection.Controllers
     interface FiltersManager
     {
         void defaultMethod();
-        void openImageDialog();
+        void openImageDialog(System.Windows.Forms.PictureBox picPreview);
     }
 }
