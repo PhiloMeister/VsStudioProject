@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
+using ImageEdgeDetection;
 
 
 namespace ImageEdgeDetectionUnitTesting
@@ -21,16 +21,30 @@ namespace ImageEdgeDetectionUnitTesting
     [TestClass]
     public class UnitTest1
     {
-        private ImageEdgeDetection.
-        private System.Windows.Forms.PictureBox picPreview;
 
+        //ChooseWhichEdgeFilter()
 
+        //Laplacian3x3Filter(true)
+        //Laplacian3x3Filter(false)
 
-        [TestMethod]
-        public void ApplyColorFilter_IfImageGivenIsnull()
-        {
-            Filters filters = new Filters();
-            filters.ApplyColorFilter();
-        }
+        //Laplacian5x5Filter(true)
+        //Laplacian5x5Filter(false)
+
+        //LaplacianOfGaussianFilter()
+        //[TestMethod]
+        //public void ApplyEdge_Laplacian3x3FilterTrue_TestIfDone()
+        //{
+          
+        //    Image dummy = Image.FromFile("image.png");
+        //    Bitmap originalBitmap = new Bitmap(dummy);
+        //    Bitmap tested = null;
+        //    tested = originalBitmap;
+
+        //    tested.Laplacian3x3Filter(true);
+           
+        //    Assert.AreNotSame(dummy,tested);
+
+        //}
+
     }
 }

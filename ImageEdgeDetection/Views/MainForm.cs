@@ -232,71 +232,71 @@ namespace ImageEdgeDetection
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian3x3Filter(false));
+                    bitmapResult = selectedSource.Laplacian3x3Filter(false);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 Grayscale")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian3x3Filter(true));
+                    bitmapResult = selectedSource.Laplacian3x3Filter(true);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian5x5Filter(false));
+                    bitmapResult = selectedSource.Laplacian5x5Filter(false);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 Grayscale")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian5x5Filter(true));
+                    bitmapResult = selectedSource.Laplacian5x5Filter(true);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian of Gaussian")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.LaplacianOfGaussianFilter());
+                    bitmapResult = selectedSource.LaplacianOfGaussianFilter();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 of Gaussian 3x3")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian3x3OfGaussian3x3Filter());
+                    bitmapResult = selectedSource.Laplacian3x3OfGaussian3x3Filter();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 of Gaussian 5x5 - 1")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian3x3OfGaussian5x5Filter1());
+                    bitmapResult = selectedSource.Laplacian3x3OfGaussian5x5Filter1();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 of Gaussian 5x5 - 2")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian3x3OfGaussian5x5Filter2());
+                    bitmapResult = selectedSource.Laplacian3x3OfGaussian5x5Filter2();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 of Gaussian 3x3")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian5x5OfGaussian3x3Filter());
+                    bitmapResult = selectedSource.Laplacian5x5OfGaussian3x3Filter();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 of Gaussian 5x5 - 1")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian5x5OfGaussian5x5Filter1());
+                    bitmapResult = selectedSource.Laplacian5x5OfGaussian5x5Filter1();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 of Gaussian 5x5 - 2")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Laplacian5x5OfGaussian5x5Filter2());
+                    bitmapResult = selectedSource.Laplacian5x5OfGaussian5x5Filter2();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Sobel 3x3")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Sobel3x3Filter(false));
+                    bitmapResult = selectedSource.Sobel3x3Filter(false);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Sobel 3x3 Grayscale")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.Sobel3x3Filter());
+                    bitmapResult = selectedSource.Sobel3x3Filter();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Prewitt")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.PrewittFilter(false));
+                    bitmapResult = selectedSource.PrewittFilter(false);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Prewitt Grayscale")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.PrewittFilter());
+                    bitmapResult = selectedSource.PrewittFilter();
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Kirsch")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.KirschFilter(false));
+                    bitmapResult = selectedSource.KirschFilter(false);
                 }
                 else if (cmbEdgeDetection.SelectedItem.ToString() == "Kirsch Grayscale")
                 {
-                    bitmapResult = filters.applyEdgeFilterv2(selectedSource.KirschFilter());
+                    bitmapResult = selectedSource.KirschFilter();
                 }
             }
 

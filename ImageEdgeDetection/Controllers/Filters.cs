@@ -27,6 +27,7 @@ namespace ImageEdgeDetection.Controllers
 
         public void openImageDialog(System.Windows.Forms.PictureBox picPreview)
         {
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select an image file.";
             ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
@@ -49,7 +50,7 @@ namespace ImageEdgeDetection.Controllers
         }
         public void BtnSaveNewImage_Click()
         {
-
+            ResultBitmap.Save("C:\\Users\\Admin\\outwork.PNG", ImageFormat.Png);
             //ApplyEdgeFilter();
 
             if (ResultBitmap != null)
@@ -82,6 +83,8 @@ namespace ImageEdgeDetection.Controllers
                     ResultBitmap = null;
                 }
             }
+
+
         }
 
         public void ApplyColorFilter(Bitmap applyFilter)

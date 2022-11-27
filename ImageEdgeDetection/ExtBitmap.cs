@@ -45,7 +45,7 @@ namespace ImageEdgeDetection
 
             return bitmapResult;
         }
-
+        //standard detection
         private static Bitmap ConvolutionFilter(Bitmap sourceBitmap, 
                                              double[,] filterMatrix, 
                                                   double factor = 1, 
@@ -170,7 +170,7 @@ namespace ImageEdgeDetection
 
             return resultBitmap;
         }
-
+        //X Y detection
         public static Bitmap ConvolutionFilter(this Bitmap sourceBitmap,
                                                 double[,] xFilterMatrix,
                                                 double[,] yFilterMatrix,
