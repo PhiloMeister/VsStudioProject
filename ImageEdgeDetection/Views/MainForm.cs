@@ -99,10 +99,19 @@ namespace ImageEdgeDetection
             }
             else
             {
-                filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 10, 1, 1));
+                Bitmap toFilter = new Bitmap(filters.filteredColoredBitmap);
+                filters.ApplyColorFilter(ImageFilters.ApplyFilter(toFilter, 1, 10, 1, 1));
                 //ApplyEdgeFilter(filteredColoredBitmap);
+
                 ChooseWhichEdgeFilter();
                 UpdateComponentFilterApplied();
+
+
+                StreamWriter streamWriter = new StreamWriter("C:\\Users\\uadmin\\Pictures\\HellFilter2.png", false);
+                filters.filteredColoredBitmap.Save(streamWriter.BaseStream, ImageFormat.Png);
+                // clean and close the streamWriter
+                streamWriter.Flush();
+                streamWriter.Close();
             }
            
         }
@@ -221,7 +230,7 @@ namespace ImageEdgeDetection
         {
             Bitmap selectedSource = null;
             Bitmap bitmapResult = null;
-            // the selected source is the bitmap image that has is coloFiltered
+            // the selected source is the bitmap image that is color filtered
             selectedSource = filters.filteredColoredBitmap;
 
             if (selectedSource != null)

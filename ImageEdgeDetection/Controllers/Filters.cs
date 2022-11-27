@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -50,11 +51,13 @@ namespace ImageEdgeDetection.Controllers
         }
         public void BtnSaveNewImage_Click()
         {
-            ResultBitmap.Save("C:\\Users\\Admin\\outwork.PNG", ImageFormat.Png);
-            //ApplyEdgeFilter();
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            
 
             if (ResultBitmap != null)
             {
+                ResultBitmap.Save(dirName + "\\outwork.PNG", ImageFormat.Png);
+
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "Specify a file name and file path";
                 sfd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";

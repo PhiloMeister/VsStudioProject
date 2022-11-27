@@ -7,6 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using ImageEdgeDetection;
+using System.Reflection;
+using PictureBox.Image.Testes;
 
 namespace EdgeDriverTest1Framework
 {
@@ -35,9 +37,9 @@ namespace EdgeDriverTest1Framework
         {
             Assert.AreEqual(resultImage.Size, filteredImage.Size);
 
-            for (int y = 0; y < resultImage.Height - 1; y++)
+            for (int y = 0; y < resultImage.Height; y++)
             {
-                for (int x = 0; x < resultImage.Width - 1; x++)
+                for (int x = 0; x < resultImage.Width; x++)
                 {
                     Assert.AreEqual(resultImage.GetPixel(x, y), filteredImage.GetPixel(x, y));
                 }
@@ -48,10 +50,13 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyEdge_Laplacian3x3Filterfalse_TestIfDone()
         {
-            Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\laplacian3x3FilterfalseImage.png"));
-            Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\laplacian3x3FilterfalseImage.png"));
+            //Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName+"\\laplacian3x3FilterfalseImage.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName+"\\standard.png"));
 
-           Bitmap result =  tested.Laplacian3x3Filter(false);
+            Bitmap result =  tested.Laplacian3x3Filter(false);
             
             CompareBitmapPixels(expectedResult, result);
 
@@ -60,9 +65,12 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyEdge_Laplacian3x3FilterTrue_TestIfDone()
         {
-            Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\laplacian3x3FilterTrueImage.png"));
-            Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\laplacian3x3FilterTrueImage.png"));
+            //Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
 
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName + "\\laplacian3x3FilterTrueImage.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName+"\\standard.png"));
 
             Bitmap result = tested.Laplacian3x3Filter(true);
 
@@ -74,8 +82,12 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyEdge_Laplacian5x5FilterFalse_TestIfDone()
         {
-            Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\Laplacian5x5FilterFalse.png"));
-            Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\Laplacian5x5FilterFalse.png"));
+            //Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName+"\\Laplacian5x5FilterFalse.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName+"\\standard.png"));
 
 
             Bitmap result = tested.Laplacian5x5Filter(false);
@@ -88,8 +100,12 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyEdge_Laplacian5x5FilterTrue_TestIfDone()
         {
-            Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\Laplacian5x5FilterTrue.png"));
-            Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\Laplacian5x5FilterTrue.png"));
+            //Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName+"\\Laplacian5x5FilterTrue.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName+"\\standard.png"));
 
 
             Bitmap result = tested.Laplacian5x5Filter(true);
@@ -101,8 +117,11 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyEdge_LaplacianOfGaussianFilter_TestIfDone()
         {
-            Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\LaplacianOfGaussianFilter.png"));
-            Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //Bitmap expectedResult = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\LaplacianOfGaussianFilter.png"));
+            //Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\standard.png"));
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName+"\\LaplacianOfGaussianFilter.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName+"\\standard.png"));
 
             Bitmap result = tested.LaplacianOfGaussianFilter();
 
@@ -111,5 +130,43 @@ namespace EdgeDriverTest1Framework
 
 
         }
+
+
+        [TestMethod]
+        public void ZenFilter_Test()
+        {
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName+ "\\ZenFilter2.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName + "\\original_Preview.png"));
+
+            Bitmap result = ImageFilters.ApplyFilter(tested, 1, 10, 1, 1);
+
+            CompareBitmapPixels(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void MiamiFilter_Test()
+        {
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName + "\\MiamiFilter_True.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName + "\\original_Preview.png"));
+
+            Bitmap result = ImageFilters.ApplyFilter(tested, 1, 1, 10, 1);
+
+            CompareBitmapPixels(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void HellFilter_Test()
+        {
+            var dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Bitmap expectedResult = new Bitmap(Image.FromFile(dirName + "\\HellFilter_True.png"));
+            Bitmap tested = new Bitmap(Image.FromFile(dirName + "\\original_Preview.png"));
+
+            Bitmap result = ImageFilters.ApplyFilter(tested, 1, 1, 10, 15);
+
+            CompareBitmapPixels(expectedResult, result);
+        }
+
     }
 }
