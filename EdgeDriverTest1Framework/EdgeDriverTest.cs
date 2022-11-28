@@ -9,6 +9,7 @@ using OpenQA.Selenium.Edge;
 using ImageEdgeDetection;
 using System.Reflection;
 using PictureBox.Image.Testes;
+//using PictureBox.Image.Testes;
 
 namespace EdgeDriverTest1Framework
 {
