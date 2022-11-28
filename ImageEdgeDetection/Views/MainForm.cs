@@ -45,6 +45,21 @@ namespace ImageEdgeDetection
 
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
+            Bitmap tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\gigachad.PNG"));
+            Bitmap result = ImageFilters.ApplyFilter(
+                new Bitmap(tested), 1, 10, 1, 1);
+            result.Save("C:\\Users\\Admin\\pictureZen.png");
+
+             tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\gigachad.PNG"));
+             result = ImageFilters.ApplyFilter(
+                 new Bitmap(tested), 1, 1, 10, 15);
+            result.Save("C:\\Users\\Admin\\pictureHell.png");
+
+            tested = new Bitmap(Image.FromFile("C:\\Users\\Admin\\Source\\Repos\\VsStudioProjectFinal\\EdgeDriverTest1Framework\\gigachad.PNG"));
+            result = ImageFilters.ApplyFilter(
+                new Bitmap(tested), 1, 1, 10, 1);
+            result.Save("C:\\Users\\Admin\\pictureMiami.png");
+
             filters.openImageDialog(picPreview);
             UpdateComponentImagechoosenSuccess();
         }
