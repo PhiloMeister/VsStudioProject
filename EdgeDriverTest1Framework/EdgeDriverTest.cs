@@ -15,7 +15,6 @@ namespace EdgeDriverTest1Framework
     [TestClass]
     public class EdgeDriverTest
     {
-      
         
         public void CompareBitmapPixels(Bitmap res, Bitmap testimg)
         {
@@ -26,6 +25,18 @@ namespace EdgeDriverTest1Framework
                 for (int x = 0; x < res.Width - 1; x++)
                 {
                     Assert.AreEqual(res.GetPixel(x, y), testimg.GetPixel(x, y));
+                }
+            }
+        }
+        public void CompareBitmapPixelsNotEqual(Bitmap res, Bitmap testimg)
+        {
+            Assert.AreNotEqual(res.Size, testimg.Size);
+
+            for (int y = 0; y < res.Height - 1; y++)
+            {
+                for (int x = 0; x < res.Width - 1; x++)
+                {
+                    Assert.AreNotEqual(res.GetPixel(x, y), testimg.GetPixel(x, y));
                 }
             }
         }
@@ -41,7 +52,6 @@ namespace EdgeDriverTest1Framework
             
             CompareBitmapPixels(expectedResult, result);
 
-
         }
         [TestMethod]
         public void ApplyEdge_Laplacian3x3FilterTrue_TestIfDone()
@@ -50,7 +60,6 @@ namespace EdgeDriverTest1Framework
             Bitmap tested = new Bitmap(Resources.standard);
 
             Bitmap result = tested.Laplacian3x3Filter(true);
-
 
             CompareBitmapPixels(expectedResult, result);
 
@@ -64,7 +73,6 @@ namespace EdgeDriverTest1Framework
 
             Bitmap result = tested.Laplacian5x5Filter(false);
 
-
             CompareBitmapPixels(expectedResult, result);
 
 
@@ -77,7 +85,6 @@ namespace EdgeDriverTest1Framework
 
             Bitmap result = tested.Laplacian5x5Filter(true);
 
-
             CompareBitmapPixels(expectedResult, result);
 
         }
@@ -88,7 +95,6 @@ namespace EdgeDriverTest1Framework
             Bitmap tested = new Bitmap(Resources.standard);
 
             Bitmap result = tested.LaplacianOfGaussianFilter();
-
 
             CompareBitmapPixels(expectedResult, result);
 
@@ -122,11 +128,11 @@ namespace EdgeDriverTest1Framework
             Bitmap expectedResult = new Bitmap(Resources.pictureMiami);
             Bitmap tested = new Bitmap(Resources.standardNotColored);
 
-
             Bitmap result = ImageFilters.ApplyFilter(tested, 1, 1, 10, 1);
 
             CompareBitmapPixels(expectedResult, result);
 
         }
+        
     }
 }
