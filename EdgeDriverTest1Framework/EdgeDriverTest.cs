@@ -98,7 +98,7 @@ namespace EdgeDriverTest1Framework
         public void ApplyZenFilter_TestIfDone()
         {
             Bitmap expectedResult = new Bitmap(Resources.pictureZen);
-            Bitmap tested = new Bitmap(Resources.gigachad);
+            Bitmap tested = new Bitmap(Resources.standardNotColored);
 
             Bitmap result = ImageFilters.ApplyFilter(new Bitmap(tested), 1, 10, 1, 1);
 
@@ -109,7 +109,7 @@ namespace EdgeDriverTest1Framework
         public void ApplyHellFilter_TestIfDone()
         {
             Bitmap expectedResult = new Bitmap(Resources.pictureHell);
-            Bitmap tested = new Bitmap(Resources.gigachad);
+            Bitmap tested = new Bitmap(Resources.standardNotColored);
 
             Bitmap result = ImageFilters.ApplyFilter(new Bitmap(tested), 1, 1, 10, 15);
 
@@ -120,7 +120,7 @@ namespace EdgeDriverTest1Framework
         public void ApplyMiamiFilter_TestIfDone()
         {
             Bitmap expectedResult = new Bitmap(Resources.pictureMiami);
-            Bitmap tested = new Bitmap(Resources.gigachad);
+            Bitmap tested = new Bitmap(Resources.standardNotColored);
 
 
             Bitmap result = ImageFilters.ApplyFilter(tested, 1, 1, 10, 1);

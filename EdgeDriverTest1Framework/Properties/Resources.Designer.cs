@@ -63,16 +63,6 @@ namespace EdgeDriverTest1Framework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap gigachad {
-            get {
-                object obj = ResourceManager.GetObject("gigachad", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap laplacian3x3FilterfalseImage {
             get {
                 object obj = ResourceManager.GetObject("laplacian3x3FilterfalseImage", resourceCulture);
@@ -156,6 +146,16 @@ namespace EdgeDriverTest1Framework.Properties {
         public static System.Drawing.Bitmap standard {
             get {
                 object obj = ResourceManager.GetObject("standard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap standardNotColored {
+            get {
+                object obj = ResourceManager.GetObject("standardNotColored", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
