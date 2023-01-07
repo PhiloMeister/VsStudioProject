@@ -45,7 +45,7 @@ namespace ImageEdgeDetection
 
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
-            filters.openImageDialog(picPreview);
+          picPreview.Image =  filters.openImageDialog(picPreview.Width);
             UpdateComponentImagechoosenSuccess();
         }
         private void BtnSaveNewImage_Click(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace ImageEdgeDetection
         //apply x y filters button
         private void BtnApplyXYFilters_Click(object sender, EventArgs e)
         {
-            filters.ApplyXYFilters(listBoxXFilter,listBoxYFilter,pictureBoxResult,textBoxData,labelError,trackBarThreshold);
+          textBoxData.Text =   filters.ApplyXYFilters(listBoxXFilter.SelectedItem.ToString(), listBoxYFilter.SelectedItem.ToString(),pictureBoxResult.Image,trackBarThreshold.Value);
         }
 
 

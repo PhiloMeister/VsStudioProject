@@ -10,22 +10,19 @@ using System.Windows.Forms;
 
 namespace ImageEdgeDetection.Controllers
 {
-    public class Filters
+    public class Filters : IFilters
     {
-         private System.Windows.Forms.PictureBox picPreview;
         public Bitmap originalBitmap  = null;
         public Bitmap untouchedPreviewBitmap  = null;
         public Bitmap ResultBitmap  = null;
         public Bitmap filteredColoredBitmap  = null;
 
-
         public void defaultMethod()
         {
-            throw new NotImplementedException();
         }
 
-
-        public void openImageDialog(System.Windows.Forms.PictureBox picPreview)
+        //DONE
+        public Bitmap openImageDialog(int width)
         {
 
             OpenFileDialog ofd = new OpenFileDialog();
@@ -42,15 +39,19 @@ namespace ImageEdgeDetection.Controllers
                 streamReader.Close();
                 //PreviewBitmap is like the original one but redimensioned for our square
                 //PicPreview is the PICTUREBOX
-                untouchedPreviewBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
+                untouchedPreviewBitmap = originalBitmap.CopyToSquareCanvas(width);
                 //We give the redimensioned image to the square
                 filteredColoredBitmap = untouchedPreviewBitmap;
-                picPreview.Image = filteredColoredBitmap;
+                //picPreview.Image = filteredColoredBitmap;
+                return filteredColoredBitmap;
             }
+
+            return null;
         }
+        //DONE
         public void BtnSaveNewImage_Click()
         {
-            ResultBitmap.Save("C:\\Users\\Admin\\outwork.PNG", ImageFormat.Png);
+            //ResultBitmap.Save("C:\\Users\\Admin\\outwork.PNG", ImageFormat.Png);
             //ApplyEdgeFilter();
 
             if (ResultBitmap != null)
@@ -86,7 +87,7 @@ namespace ImageEdgeDetection.Controllers
 
 
         }
-
+        //DONE
         public void ApplyColorFilter(Bitmap applyFilter)
         {
 
@@ -99,37 +100,36 @@ namespace ImageEdgeDetection.Controllers
 
 
         }
+        //DONE
+        //public Bitmap applyEdgeFilterv2(Bitmap input)
+        //{
 
+        //    if (input != null)
+        //    {
+        //        return input;
+        //    }
+        //    else
+        //    {
+        //        //return the colored bitmap
+        //        return filteredColoredBitmap;
+        //    }
 
-        public Bitmap applyEdgeFilterv2(Bitmap input)
-        {
-
-            if (input != null)
-            {
-                return input;
-            }
-            else
-            {
-                //return the colored bitmap
-                return filteredColoredBitmap;
-            }
-
-        }
+        //}
 
         
 
-        public void resetAll(System.Windows.Forms.PictureBox picPreview, ComboBox cmbEdgeDetection)
-        {
+        //public void resetAll(System.Windows.Forms.PictureBox picPreview, ComboBox cmbEdgeDetection)
+        //{
           
-        }
-
-        public void ConvertToXYCoord(Bitmap pictureBoxelem,System.Windows.Forms.PictureBox pictureBoxResult, System.Windows.Forms.TextBox textBoxData)
+        //}
+        //TODO 
+        public String ConvertToXYCoord(Bitmap pictureBoxelem,Image pictureBoxResultImage)
         {
             string coord = "";
             int width = pictureBoxelem.Width;
             int height = pictureBoxelem.Height;
             Size size = new Size(width, height);
-            Bitmap bitmapIMG = new Bitmap(pictureBoxResult.Image, width, height);
+            Bitmap bitmapIMG = new Bitmap(pictureBoxResultImage, width, height);
 
             List<Coord> coorArray = new List<Coord>();
 
@@ -158,11 +158,12 @@ namespace ImageEdgeDetection.Controllers
                     }
                 }
             }
-            textBoxData.Text = coord;
+            return coord;
 
 
         }
-        public void Filter(string xfilter, string yfilter, System.Windows.Forms.TrackBar trackBarThreshold, System.Windows.Forms.PictureBox pictureBoxResult, System.Windows.Forms.Label labelError)
+        //DONE
+        public Bitmap Filter(string xfilter, string yfilter, int trackBarThresholdValue)
         {
             double[,] xFilterMatrix;
             double[,] yFilterMatrix;
@@ -350,7 +351,7 @@ namespace ImageEdgeDetection.Controllers
 
                         try
                         {
-                            if (greenTotal < Convert.ToInt32(trackBarThreshold.Value))
+                            if (greenTotal < Convert.ToInt32(trackBarThresholdValue))
                             {
                                 greenTotal = 0.0;
                             }
@@ -387,36 +388,27 @@ namespace ImageEdgeDetection.Controllers
 
                 Marshal.Copy(resultbuff, 0, resultData.Scan0, resultbuff.Length);
                 resultbitmap.UnlockBits(resultData);
-                pictureBoxResult.Image = resultbitmap;
+                return resultbitmap;
             }
-            else
-            {
-                labelError.Text = "You must load an image";
-            }
-        }
 
-        public void ApplyXYFilters(System.Windows.Forms.ListBox listBoxXFilter,
-            System.Windows.Forms.ListBox listBoxYFilter,
-            System.Windows.Forms.PictureBox pictureBoxResult,
-            System.Windows.Forms.TextBox textBoxData,
-            System.Windows.Forms.Label labelError,
-            System.Windows.Forms.TrackBar trackBarThreshold)
+            return null;
+        }
+        //DONE
+        public String ApplyXYFilters(String listBoxXFilter,
+            String listBoxYFilter,
+            Image pictureBoxResultImage,
+            int trackBarThresholdValue)
         {
             // Both X and Y filters must be selected
-            if (listBoxXFilter.SelectedItem.ToString().Length > 0 && listBoxYFilter.SelectedItem.ToString().Length > 0)
+            if (listBoxXFilter.Length > 0 && listBoxYFilter.Length > 0)
             {
                 //Filter(listBoxXFilter.SelectedItem.ToString(), listBoxYFilter.SelectedItem.ToString());
-                Filter(listBoxXFilter.SelectedItem.ToString(), listBoxYFilter.SelectedItem.ToString(), trackBarThreshold, pictureBoxResult, labelError);
+                ResultBitmap =  Filter(listBoxXFilter, listBoxYFilter, trackBarThresholdValue );
                 // pic preview took the filteredcoloredBitmap
-                ConvertToXYCoord(filteredColoredBitmap, pictureBoxResult, textBoxData);
-                labelError.Text = "";
+              return ConvertToXYCoord(filteredColoredBitmap, pictureBoxResultImage);
             }
-            else //if the 2 filters are not selected
-            {
-                labelError.Text = "2 filters must be selected";
-            }
-        }
 
-       
+            return null;
+        }
     }
 }

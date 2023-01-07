@@ -65,8 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorFilterManager.cs" />
+    <Compile Include="Controllers\DataManipulation.cs" />
     <Compile Include="Controllers\Filters.cs" />
-    <Compile Include="Controllers\FiltersManager.cs" />
+    <Compile Include="Controllers\IDataManipulation.cs" />
+    <Compile Include="Controllers\IFilters.cs" />
     <Compile Include="ExtBitmap.cs" />
     <Compile Include="FilterMatrix.cs" />
     <Compile Include="General.cs" />

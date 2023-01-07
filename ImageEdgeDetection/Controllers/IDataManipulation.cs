@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace ImageEdgeDetection.Controllers
 {
-    interface FiltersManager
+    interface IDataManipulation
     {
-        void defaultMethod();
-        void openImageDialog(System.Windows.Forms.PictureBox picPreview);
+        Bitmap openImageDialog(int width);
+        void BtnSaveNewImage_Click();
     }
 }
