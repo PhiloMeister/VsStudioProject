@@ -9,7 +9,9 @@ namespace ImageEdgeDetection.Controllers
 {
     interface IFilters
     {
-            void openImageDialog(System.Windows.Forms.PictureBox picPreview);
+
+        void openImageDialog(System.Windows.Forms.PictureBox picPreview);
+        Bitmap ChooseWhichEdgeFilter(String selectedFilter);
         void BtnSaveNewImage_Click();
         void ApplyColorFilter(Bitmap applyFilter);
          Bitmap applyEdgeFilterv2(Bitmap input);

@@ -28,7 +28,6 @@ namespace ImageEdgeDetection
             cmbEdgeDetection.SelectedIndex = 0;
             cmbEdgeDetection.Enabled = false;
             //list box for the X algo detection
-         
             btnSaveNewImage.Enabled = false;
             btnHellFilter.Enabled = false;
             btnNoColorFilter.Enabled = false;
@@ -59,16 +58,11 @@ namespace ImageEdgeDetection
         }
 
 
-       
-
         // make image edge detection parameters available
         private void UpdateComponentFilterApplied()
         {
             cmbEdgeDetection.Enabled = true;
-       
         }
-
-       
 
         private void NeighbourCountValueChangedEventHandler(object sender, EventArgs e)
         {
@@ -78,7 +72,7 @@ namespace ImageEdgeDetection
             }
             else
             {
-                ChooseWhichEdgeFilter();
+              picPreview.Image =  filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
             }
         }
 
@@ -93,13 +87,11 @@ namespace ImageEdgeDetection
             {
                 filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 10, 1, 1));
                 //ApplyEdgeFilter(filteredColoredBitmap);
-                ChooseWhichEdgeFilter();
+                filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
                 UpdateComponentFilterApplied();
             }
            
         }
-
-        
 
         private void BtnMiamiFilter_Click(object sender, EventArgs e)
         {
@@ -110,7 +102,7 @@ namespace ImageEdgeDetection
             else
             {
                 filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 1, 10, 1));
-                ChooseWhichEdgeFilter();
+                picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
                 UpdateComponentFilterApplied();
             }
 
@@ -126,7 +118,7 @@ namespace ImageEdgeDetection
             else
             {
                 filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 1, 10, 15));
-                ChooseWhichEdgeFilter();
+                picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
                 UpdateComponentFilterApplied();
             }
             
@@ -151,106 +143,10 @@ namespace ImageEdgeDetection
             cmbEdgeDetection.SelectedIndex = cmbEdgeDetection.FindStringExact("None");
         }
 
-        //apply x y filters button
-      
-
-
-     
-
-
-
-        private void ChooseWhichEdgeFilter()
-        {
-            Bitmap selectedSource = null;
-            Bitmap bitmapResult = null;
-            // the selected source is the bitmap image that has is coloFiltered
-            selectedSource = filters.filteredColoredBitmap;
-
-            if (selectedSource != null)
-            {
-                if (cmbEdgeDetection.SelectedItem.ToString() == "None")
-                {
-                    bitmapResult = selectedSource;
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3Filter(false);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 Grayscale")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3Filter(true);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5Filter(false);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 Grayscale")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5Filter(true);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian of Gaussian")
-                {
-                    bitmapResult = selectedSource.LaplacianOfGaussianFilter();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 of Gaussian 3x3")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3OfGaussian3x3Filter();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 of Gaussian 5x5 - 1")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3OfGaussian5x5Filter1();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 3x3 of Gaussian 5x5 - 2")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3OfGaussian5x5Filter2();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 of Gaussian 3x3")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5OfGaussian3x3Filter();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 of Gaussian 5x5 - 1")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5OfGaussian5x5Filter1();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Laplacian 5x5 of Gaussian 5x5 - 2")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5OfGaussian5x5Filter2();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Sobel 3x3")
-                {
-                    bitmapResult = selectedSource.Sobel3x3Filter(false);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Sobel 3x3 Grayscale")
-                {
-                    bitmapResult = selectedSource.Sobel3x3Filter();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Prewitt")
-                {
-                    bitmapResult = selectedSource.PrewittFilter(false);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Prewitt Grayscale")
-                {
-                    bitmapResult = selectedSource.PrewittFilter();
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Kirsch")
-                {
-                    bitmapResult = selectedSource.KirschFilter(false);
-                }
-                else if (cmbEdgeDetection.SelectedItem.ToString() == "Kirsch Grayscale")
-                {
-                    bitmapResult = selectedSource.KirschFilter();
-                }
-            }
-            if (bitmapResult != null)
-            {
-                picPreview.Image = bitmapResult;
-                filters.ResultBitmap = bitmapResult;
-            }
-        }
-
+ 
         private void btnNoColorFilter_Click(object sender, EventArgs e)
         {
-            ChooseWhichEdgeFilter();
+            picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
             UpdateComponentFilterApplied();
         }
     }
