@@ -58,7 +58,7 @@ namespace EdgeDriverTest1Framework
         {
             Bitmap expectedResult = new Bitmap(Resources.laplacian3x3FilterTrueImage);
             Bitmap tested = new Bitmap(Resources.standard);
-
+            //test
             Bitmap result = tested.Laplacian3x3Filter(true);
 
             CompareBitmapPixels(expectedResult, result);
