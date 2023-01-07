@@ -10,80 +10,28 @@ using System.Windows.Forms;
 
 namespace ImageEdgeDetection.Controllers
 {
-    public class Filters
+    public class Filters : IFilters
     {
-         private System.Windows.Forms.PictureBox picPreview;
-        public Bitmap originalBitmap  = null;
+        IDataManipulation dataManipulation = new DataManipulation();
+        public Bitmap OriginalBitmap { get; set;} = null;
         public Bitmap untouchedPreviewBitmap  = null;
         public Bitmap ResultBitmap  = null;
         public Bitmap filteredColoredBitmap  = null;
-
-
+        
         public void defaultMethod()
         {
             throw new NotImplementedException();
         }
-
-
+        
         public void openImageDialog(System.Windows.Forms.PictureBox picPreview)
         {
-
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select an image file.";
-            ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
-            ofd.Filter += "|Bitmap Images(*.bmp)|*.bmp";
-
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                //Get the image into the original bitmap
-                //The original bitmap is not dimensioned for our square
-                StreamReader streamReader = new StreamReader(ofd.FileName);
-                originalBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
-                streamReader.Close();
-                //PreviewBitmap is like the original one but redimensioned for our square
-                //PicPreview is the PICTUREBOX
-                untouchedPreviewBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
-                //We give the redimensioned image to the square
-                filteredColoredBitmap = untouchedPreviewBitmap;
-                picPreview.Image = filteredColoredBitmap;
-            }
+            untouchedPreviewBitmap = dataManipulation.openImageDialog(picPreview);
+            filteredColoredBitmap = untouchedPreviewBitmap;
+            picPreview.Image = filteredColoredBitmap;
         }
         public void BtnSaveNewImage_Click()
-        {
-            ResultBitmap.Save("C:\\Users\\Admin\\outwork.PNG", ImageFormat.Png);
-            //ApplyEdgeFilter();
-
-            if (ResultBitmap != null)
-            {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Title = "Specify a file name and file path";
-                sfd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
-                sfd.Filter += "|Bitmap Images(*.bmp)|*.bmp";
-
-                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string fileExtension = Path.GetExtension(sfd.FileName).ToUpper();
-                    ImageFormat imgFormat = ImageFormat.Png;
-
-                    if (fileExtension == "BMP")
-                    {
-                        imgFormat = ImageFormat.Bmp;
-                    }
-                    else if (fileExtension == "JPG")
-                    {
-                        imgFormat = ImageFormat.Jpeg;
-                    }
-
-                    StreamWriter streamWriter = new StreamWriter(sfd.FileName, false);
-                    ResultBitmap.Save(streamWriter.BaseStream, imgFormat);
-                    // clean and close the streamWriter
-                    streamWriter.Flush();
-                    streamWriter.Close();
-
-                    ResultBitmap = null;
-                }
-            }
-
+        { 
+            dataManipulation.BtnSaveNewImage_Click(ResultBitmap);
 
         }
 

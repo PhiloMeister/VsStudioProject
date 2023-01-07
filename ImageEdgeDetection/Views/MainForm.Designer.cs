@@ -56,6 +56,7 @@
             this.btnApplyXYFilters = new System.Windows.Forms.Button();
             this.labelError = new System.Windows.Forms.Label();
             this.chartarea = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnNoColorFilter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarThreshold)).BeginInit();
@@ -187,11 +188,11 @@
             this.labelXFilter.TabIndex = 26;
             this.labelXFilter.Text = "X Filter";
             // 
-            // yFilterLabel
+            // labelYFilter
             // 
             this.labelYFilter.AutoSize = true;
             this.labelYFilter.Location = new System.Drawing.Point(562, 146);
-            this.labelYFilter.Name = "yFilterLabel";
+            this.labelYFilter.Name = "labelYFilter";
             this.labelYFilter.Size = new System.Drawing.Size(52, 17);
             this.labelYFilter.TabIndex = 27;
             this.labelYFilter.Text = "Y Filter";
@@ -346,10 +347,21 @@
             this.chartarea.TabIndex = 40;
             this.chartarea.Text = "chartarea";
             // 
+            // btnNoColorFilter
+            // 
+            this.btnNoColorFilter.Location = new System.Drawing.Point(504, 15);
+            this.btnNoColorFilter.Name = "No filters";
+            this.btnNoColorFilter.Size = new System.Drawing.Size(142, 27);
+            this.btnNoColorFilter.TabIndex = 41;
+            this.btnNoColorFilter.Text = "No filters";
+            this.btnNoColorFilter.UseVisualStyleBackColor = true;
+            this.btnNoColorFilter.Click += new System.EventHandler(this.btnNoColorFilter_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1042, 427);
+            this.Controls.Add(this.btnNoColorFilter);
             this.Controls.Add(this.chartarea);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.btnApplyXYFilters);
@@ -418,6 +430,7 @@
         private System.Windows.Forms.Button btnApplyXYFilters;
         private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartarea;
+        private System.Windows.Forms.Button btnNoColorFilter;
     }
 }
 

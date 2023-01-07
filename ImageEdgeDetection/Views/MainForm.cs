@@ -33,6 +33,7 @@ namespace ImageEdgeDetection
             listBoxYFilter.SelectedIndex = 0;
             btnSaveNewImage.Enabled = false;
             btnHellFilter.Enabled = false;
+            btnNoColorFilter.Enabled = false;
             btnMiamiFilter.Enabled = false;
             btnZenFilter.Enabled = false;
             btnResetFilters.Enabled = false;
@@ -60,6 +61,7 @@ namespace ImageEdgeDetection
             btnMiamiFilter.Enabled = true;
             btnZenFilter.Enabled = true;
             btnResetFilters.Enabled = true;
+            btnNoColorFilter.Enabled = true;
         }
 
 
@@ -172,7 +174,6 @@ namespace ImageEdgeDetection
         }
 
 
-        
         private void MainForm_Load(object sender, EventArgs e)
         {
             chartarea.Series.Add("plot");
@@ -299,12 +300,17 @@ namespace ImageEdgeDetection
                     bitmapResult = selectedSource.KirschFilter();
                 }
             }
-
             if (bitmapResult != null)
             {
                 picPreview.Image = bitmapResult;
                 filters.ResultBitmap = bitmapResult;
             }
+        }
+
+        private void btnNoColorFilter_Click(object sender, EventArgs e)
+        {
+            ChooseWhichEdgeFilter();
+            UpdateComponentFilterApplied();
         }
     }
 
