@@ -28,20 +28,14 @@ namespace ImageEdgeDetection
             cmbEdgeDetection.SelectedIndex = 0;
             cmbEdgeDetection.Enabled = false;
             //list box for the X algo detection
-            listBoxXFilter.SelectedIndex = 0;
-            //list box for the Y algo detection
-            listBoxYFilter.SelectedIndex = 0;
+         
             btnSaveNewImage.Enabled = false;
             btnHellFilter.Enabled = false;
             btnNoColorFilter.Enabled = false;
             btnMiamiFilter.Enabled = false;
             btnZenFilter.Enabled = false;
             btnResetFilters.Enabled = false;
-            listBoxXFilter.Enabled = false;
-            listBoxYFilter.Enabled = false;
-            trackBarThreshold.Enabled = false;
-            btnApplyXYFilters.Enabled = false;
-            btnPlotCoords.Enabled = false;
+        
         }
 
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
@@ -71,11 +65,7 @@ namespace ImageEdgeDetection
         private void UpdateComponentFilterApplied()
         {
             cmbEdgeDetection.Enabled = true;
-            listBoxXFilter.Enabled = true;
-            listBoxYFilter.Enabled = true;
-            trackBarThreshold.Enabled = true;
-            btnApplyXYFilters.Enabled = true;
-            btnPlotCoords.Enabled = true;
+       
         }
 
        
@@ -150,13 +140,7 @@ namespace ImageEdgeDetection
 
 
             cmbEdgeDetection.Enabled = false;
-            listBoxXFilter.Enabled = false;
-            listBoxYFilter.Enabled = false;
-            trackBarThreshold.Enabled = false;
-            btnApplyXYFilters.Enabled = false;
-            btnPlotCoords.Enabled = false;
-            pictureBoxResult.Image = null;
-            textBoxData.Text = "";
+   
 
         }
 
@@ -168,55 +152,12 @@ namespace ImageEdgeDetection
         }
 
         //apply x y filters button
-        private void BtnApplyXYFilters_Click(object sender, EventArgs e)
-        {
-            filters.ApplyXYFilters(listBoxXFilter,listBoxYFilter,pictureBoxResult,textBoxData,labelError,trackBarThreshold);
-        }
+      
 
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            chartarea.Series.Add("plot");
-            chartarea.Series["plot"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            chartarea.Visible = false;
+     
 
-        }
 
-        private void BtnPlotCoords_Click(object sender, EventArgs e)
-        
-        {
-                chartarea.Series["plot"].Points.Clear();
-                
-                if (textBoxData.Text.Length > 1)
-                {
-                    chartarea.Visible = true;
-                    chartarea.Width = 500;
-                    chartarea.Height = 400;
-
-                    Button Close = new Button();
-                    Close.Click += new System.EventHandler(Close_Click);
-                    Close.BackColor = System.Drawing.Color.LightGray;
-                    Close.Text = "Close";
-                    chartarea.Controls.Add(Close);
-
-                    string[] coords = textBoxData.Text.Split('|');
-                    for (int i = 0; i < coords.Length; i++)
-                    {
-                        if (coords[i] != "")
-                        {
-                            double newX = Convert.ToDouble(coords[i].Split(',')[0]);
-                            double newY = Convert.ToDouble(coords[i].Split(',')[1]);
-
-                            chartarea.Series["plot"].Points.AddXY(newX, newY);
-                        }
-                    }
-                }         
-        }
-
-        private void Close_Click(object sender, EventArgs e)
-        {
-            chartarea.Visible = false;
-        }
 
         private void ChooseWhichEdgeFilter()
         {
