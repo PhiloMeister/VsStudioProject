@@ -19,8 +19,13 @@ namespace ImageEdgeDetection
 {
     public partial class MainForm : Form
     {
-        Filters filters = new Filters();
+        public Bitmap OriginalBitmap { get; set; } = null;
+        public Bitmap untouchedPreviewBitmap { get; set; } = null;
+        public Bitmap ResultBitmap { get; set; } = null;
+        public Bitmap filteredColoredBitmap { get; set; } = null;
 
+        IFilters filters = new Filters();
+        IDataManipulation dataManipulation = new DataManipulation();
         public MainForm()
         {
             InitializeComponent();
@@ -34,17 +39,19 @@ namespace ImageEdgeDetection
             btnMiamiFilter.Enabled = false;
             btnZenFilter.Enabled = false;
             btnResetFilters.Enabled = false;
-        
         }
-
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
-            filters.openImageDialog(picPreview);
+            untouchedPreviewBitmap =  dataManipulation.openImageDialog(picPreview);
+            filteredColoredBitmap = untouchedPreviewBitmap;
+            picPreview.Image = filteredColoredBitmap;
             UpdateComponentImagechoosenSuccess();
         }
+
         private void BtnSaveNewImage_Click(object sender, EventArgs e)
         {
-           filters.BtnSaveNewImage_Click();
+           ResultBitmap = (Bitmap) picPreview.Image;
+           dataManipulation.BtnSaveNewImage_Click(ResultBitmap);
         }
 
         public void UpdateComponentImagechoosenSuccess()
@@ -57,8 +64,6 @@ namespace ImageEdgeDetection
             btnNoColorFilter.Enabled = true;
         }
 
-
-        // make image edge detection parameters available
         private void UpdateComponentFilterApplied()
         {
             cmbEdgeDetection.Enabled = true;
@@ -66,28 +71,29 @@ namespace ImageEdgeDetection
 
         private void NeighbourCountValueChangedEventHandler(object sender, EventArgs e)
         {
-            if (filters.untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
+            if (untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
             {
                 return;
             }
             else
             {
-              picPreview.Image =  filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
+                filteredColoredBitmap = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
+                picPreview.Image = filteredColoredBitmap;
             }
         }
 
         private void BtnZenFilter_Click(object sender, EventArgs e)
         {
 
-            if (filters.untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
+            if (untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
             {
                 return;
             }
             else
             {
-                filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 10, 1, 1));
-                //ApplyEdgeFilter(filteredColoredBitmap);
-                filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
+              
+                picPreview.Image = filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 10, 1, 1));
+
                 UpdateComponentFilterApplied();
             }
            
@@ -95,30 +101,29 @@ namespace ImageEdgeDetection
 
         private void BtnMiamiFilter_Click(object sender, EventArgs e)
         {
-            if (filters.untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
+            if (untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
             {
                 return;
             }
             else
             {
-                filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 1, 10, 1));
-                picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
+               
+                picPreview.Image = filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 1));
+                //picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
                 UpdateComponentFilterApplied();
             }
-
-         
         }
 
         private void BtnHellFilter_Click(object sender, EventArgs e)
         {
-            if (filters.untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
+            if (untouchedPreviewBitmap == null || cmbEdgeDetection.SelectedIndex == -1)
             {
                 return;
             }
             else
             {
-                filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filters.filteredColoredBitmap), 1, 1, 10, 15));
-                picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
+                picPreview.Image = filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 15));
+                // picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
                 UpdateComponentFilterApplied();
             }
             
@@ -126,27 +131,22 @@ namespace ImageEdgeDetection
         //back button for filter
         //clear all filters on the picture box by giving the untouchedPreviewBitmap image
         private void BtnResetFilters_Click(object sender, EventArgs e)
-        {
-           
+        {         
             ResetAll();
-
-
             cmbEdgeDetection.Enabled = false;
-   
-
         }
 
         private void ResetAll()
         {
-            picPreview.Image = filters.untouchedPreviewBitmap;
-            filters.filteredColoredBitmap = filters.untouchedPreviewBitmap;
+            picPreview.Image = untouchedPreviewBitmap;
+           filteredColoredBitmap = untouchedPreviewBitmap;
             cmbEdgeDetection.SelectedIndex = cmbEdgeDetection.FindStringExact("None");
         }
 
  
         private void btnNoColorFilter_Click(object sender, EventArgs e)
         {
-            picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString());
+            picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
             UpdateComponentFilterApplied();
         }
     }

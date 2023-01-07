@@ -174,7 +174,7 @@
             this.btnNoColorFilter.Name = "btnNoColorFilter";
             this.btnNoColorFilter.Size = new System.Drawing.Size(142, 27);
             this.btnNoColorFilter.TabIndex = 41;
-            this.btnNoColorFilter.Text = "No filters";
+            this.btnNoColorFilter.Text = "No color filter";
             this.btnNoColorFilter.UseVisualStyleBackColor = true;
             this.btnNoColorFilter.Click += new System.EventHandler(this.btnNoColorFilter_Click);
             // 
