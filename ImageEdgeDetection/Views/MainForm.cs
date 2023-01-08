@@ -4,16 +4,10 @@
  * Licensed under Ms-PL 
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
+using ImageEdgeDetection.Business;
 using ImageEdgeDetection.Controllers;
-using PictureBox.Image.Testes;
-using PictureBox = System.Windows.Forms.PictureBox;
 
 namespace ImageEdgeDetection
 {
@@ -42,7 +36,7 @@ namespace ImageEdgeDetection
         }
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
-            untouchedPreviewBitmap =  dataManipulation.openImageDialog(picPreview);
+            untouchedPreviewBitmap = dataManipulation.openImageDialog(picPreview);
             filteredColoredBitmap = untouchedPreviewBitmap;
             picPreview.Image = filteredColoredBitmap;
             UpdateComponentImagechoosenSuccess();
@@ -50,8 +44,8 @@ namespace ImageEdgeDetection
 
         private void BtnSaveNewImage_Click(object sender, EventArgs e)
         {
-           ResultBitmap = (Bitmap) picPreview.Image;
-           dataManipulation.BtnSaveNewImage_Click(ResultBitmap);
+            ResultBitmap = (Bitmap)picPreview.Image;
+            dataManipulation.BtnSaveNewImage_Click(ResultBitmap);
         }
 
         public void UpdateComponentImagechoosenSuccess()
@@ -91,9 +85,7 @@ namespace ImageEdgeDetection
             }
             else
             {
-              
                 picPreview.Image = filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 10, 1, 1));
-
                 UpdateComponentFilterApplied();
             }
            
@@ -107,9 +99,7 @@ namespace ImageEdgeDetection
             }
             else
             {
-               
                 picPreview.Image = filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 1));
-                //picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
                 UpdateComponentFilterApplied();
             }
         }
@@ -123,7 +113,6 @@ namespace ImageEdgeDetection
             else
             {
                 picPreview.Image = filters.ApplyColorFilter(ImageFilters.ApplyFilter(new Bitmap(filteredColoredBitmap), 1, 1, 10, 15));
-                // picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
                 UpdateComponentFilterApplied();
             }
             
@@ -139,7 +128,7 @@ namespace ImageEdgeDetection
         private void ResetAll()
         {
             picPreview.Image = untouchedPreviewBitmap;
-           filteredColoredBitmap = untouchedPreviewBitmap;
+            filteredColoredBitmap = untouchedPreviewBitmap;
             cmbEdgeDetection.SelectedIndex = cmbEdgeDetection.FindStringExact("None");
         }
 

@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace ImageEdgeDetection.Controllers
 {
-    class DataManipulation : IDataManipulation
+    public class DataManipulation : IDataManipulation
     {
         public Bitmap openImageDialog(System.Windows.Forms.PictureBox picPreview)
         {
-
+            Bitmap originalBitmap = null;
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select an image file.";
             ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
@@ -24,16 +24,11 @@ namespace ImageEdgeDetection.Controllers
                 //Get the image into the original bitmap
                 //The original bitmap is not dimensioned for our square
                 StreamReader streamReader = new StreamReader(ofd.FileName);
-                Bitmap originalBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
-                streamReader.Close();
-                //PreviewBitmap is like the original one but redimensioned for our square
-                //PicPreview is the PICTUREBOX
-                 Bitmap untouchedPreviewBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
-                //We give the redimensioned image to the square
-                return untouchedPreviewBitmap;
+                originalBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
+                streamReader.Close();                
             }
 
-            return null;
+            return originalBitmap;
         }
         public void BtnSaveNewImage_Click(Bitmap ResultBitmap)
         {
@@ -62,13 +57,9 @@ namespace ImageEdgeDetection.Controllers
                     ResultBitmap.Save(streamWriter.BaseStream, imgFormat);
                     // clean and close the streamWriter
                     streamWriter.Flush();
-                    streamWriter.Close();
-
-                  
+                    streamWriter.Close();                  
                 }
-            }
-
-   
+            }   
         }
     }
 }
