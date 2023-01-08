@@ -18,6 +18,7 @@ namespace ImageEdgeDetection
         public Bitmap ResultBitmap { get; set; } = null;
         public Bitmap filteredColoredBitmap { get; set; } = null;
 
+        IFilterName filterName = new FilterName();
         IFilters filters = new Filters();
         IDataManipulation dataManipulation = new DataManipulation();
         public MainForm()
@@ -71,7 +72,8 @@ namespace ImageEdgeDetection
             }
             else
             {
-                filteredColoredBitmap = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
+                filterName.SetFilterName(cmbEdgeDetection.SelectedItem.ToString());
+                filteredColoredBitmap = filters.ChooseWhichEdgeFilter(filterName, filteredColoredBitmap);
                 picPreview.Image = filteredColoredBitmap;
             }
         }
@@ -135,7 +137,8 @@ namespace ImageEdgeDetection
  
         private void btnNoColorFilter_Click(object sender, EventArgs e)
         {
-            picPreview.Image = filters.ChooseWhichEdgeFilter(cmbEdgeDetection.SelectedItem.ToString(), filteredColoredBitmap);
+            filterName.SetFilterName(cmbEdgeDetection.SelectedItem.ToString());
+            picPreview.Image = filters.ChooseWhichEdgeFilter(filterName, filteredColoredBitmap);
             UpdateComponentFilterApplied();
         }
     }

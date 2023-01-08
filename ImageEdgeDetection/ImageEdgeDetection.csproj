@@ -65,8 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\ExtBitmap.cs" />
+    <Compile Include="Business\FilterName.cs" />
     <Compile Include="Business\Filters.cs" />
+    <Compile Include="Business\IFilterName.cs" />
     <Compile Include="Business\IFilters.cs" />
+    <Compile Include="Business\IImageFilter.cs" />
     <Compile Include="Controllers\DataManipulation.cs" />
     <Compile Include="Controllers\IDataManipulation.cs" />
     <Compile Include="Business\ImageFilter.cs" />

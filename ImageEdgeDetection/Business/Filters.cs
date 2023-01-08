@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 
 namespace ImageEdgeDetection.Business
@@ -15,45 +16,46 @@ namespace ImageEdgeDetection.Business
             return null;
         }
 
-        public Bitmap ChooseWhichEdgeFilter(string selectedFilter,Bitmap filteredColoredBitmap)
+        public Bitmap ChooseWhichEdgeFilter(IFilterName selectedFilter,Bitmap filteredColoredBitmap)
         {
             Bitmap selectedSource = null;
             Bitmap bitmapResult = null;
             // the selected source is the bitmap image that has is coloFiltered
             selectedSource = filteredColoredBitmap;
 
-            if (selectedSource != null)
+            string filterName = selectedFilter.GetFilterName();
+
+            try {
+
+                switch (filterName)
+                {
+                    case "None":
+                        bitmapResult = selectedSource;
+                        break;
+                    case "Laplacian 3x3":
+                        bitmapResult = selectedSource.Laplacian3x3Filter(false);
+                        break;
+                    case "Laplacian 3x3 Grayscale":
+                        bitmapResult = selectedSource.Laplacian3x3Filter(true);
+                        break;
+                    case "Laplacian 5x5":
+                        bitmapResult = selectedSource.Laplacian5x5Filter(false);
+                        break;
+                    case "Laplacian 5x5 Grayscale":
+                        bitmapResult = selectedSource.Laplacian5x5Filter(true);
+                        break;
+                    case "Laplacian of Gaussian":
+                        bitmapResult = selectedSource.LaplacianOfGaussianFilter();
+                        break;
+                }
+            }
+            catch (Exception e)
             {
-                if (selectedFilter == "None")
-                {
-                    bitmapResult = selectedSource;
-                }
-                else if (selectedFilter == "Laplacian 3x3")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3Filter(false);
-                }
-                else if (selectedFilter == "Laplacian 3x3 Grayscale")
-                {
-                    bitmapResult = selectedSource.Laplacian3x3Filter(true);
-                }
-                else if (selectedFilter == "Laplacian 5x5")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5Filter(false);
-                }
-                else if (selectedFilter == "Laplacian 5x5 Grayscale")
-                {
-                    bitmapResult = selectedSource.Laplacian5x5Filter(true);
-                }
-                else if (selectedFilter == "Laplacian of Gaussian")
-                {
-                    bitmapResult = selectedSource.LaplacianOfGaussianFilter();
-                }
+                Console.WriteLine(e);
+                return null;
             }
-            if (bitmapResult != null)
-            { 
-                return bitmapResult;
-            }
-            return null;
+            return bitmapResult;
+
         }
     }
 }
