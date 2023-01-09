@@ -11,7 +11,6 @@ namespace EdgeDriverTest1Framework
     [TestClass]
     public class EdgeDriverTest
     {
-
         public void CompareBitmapPixels(Bitmap res, Bitmap testimg)
         {
             Assert.AreEqual(res.Size, testimg.Size);
@@ -212,14 +211,7 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyZenFilter_TestIfDone()
         {
-            //var imageFilter = Substitute.For<IImageFilter>();
 
-            //Bitmap expectedResult = new Bitmap(Resources.pictureZen);
-            //Bitmap tested = new Bitmap(Resources.standardNotColored);
-
-            //Bitmap result = imageFilter.ApplyFilter(new Bitmap(tested), 1, 10, 1, 1);
-
-            //CompareBitmaps(expectedResult, result);
 
             Bitmap expectedResult = new Bitmap(Resources.pictureZen);
             Bitmap tested = new Bitmap(Resources.standardNotColored);
@@ -233,14 +225,7 @@ namespace EdgeDriverTest1Framework
         public void ApplyHellFilter_TestIfDone()
         {
 
-            //var imageFilter = Substitute.For<IImageFilter>();
 
-            //Bitmap expectedResult = new Bitmap(Resources.pictureHell);
-            //Bitmap tested = new Bitmap(Resources.standardNotColored);
-
-            //Bitmap result = imageFilter.ApplyFilter(new Bitmap(tested), 1, 1, 10, 15);
-
-            //CompareBitmaps(expectedResult, result);
 
             Bitmap expectedResult = new Bitmap(Resources.pictureZen);
             Bitmap tested = new Bitmap(Resources.standardNotColored);
@@ -252,14 +237,7 @@ namespace EdgeDriverTest1Framework
         [TestMethod]
         public void ApplyMiamiFilter_TestIfDone()
         {
-            //var imageFilter = Substitute.For<IImageFilter>();
 
-            //Bitmap expectedResult = new Bitmap(Resources.pictureMiami);
-            //Bitmap tested = new Bitmap(Resources.standardNotColored);
-
-            //Bitmap result = imageFilter.ApplyFilter(tested, 1, 1, 10, 1);
-
-            //CompareBitmaps(expectedResult, result);
             Bitmap expectedResult = new Bitmap(Resources.pictureMiami);
             Bitmap tested = new Bitmap(Resources.standardNotColored);
 
