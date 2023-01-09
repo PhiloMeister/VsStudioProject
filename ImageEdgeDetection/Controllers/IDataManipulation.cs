@@ -8,7 +8,7 @@ namespace ImageEdgeDetection.Controllers
 {
     interface IDataManipulation
     {
-         Bitmap openImageDialog(System.Windows.Forms.PictureBox picPreview);
+         Bitmap openImageDialog();
          void BtnSaveNewImage_Click(Bitmap ResultBitmap);
     }
 }

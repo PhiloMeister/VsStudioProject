@@ -37,7 +37,7 @@ namespace ImageEdgeDetection
         }
         private void BtnOpenOriginal_Click(object sender, EventArgs e)
         {
-            untouchedPreviewBitmap = dataManipulation.openImageDialog(picPreview);
+            untouchedPreviewBitmap = dataManipulation.openImageDialog();
             filteredColoredBitmap = untouchedPreviewBitmap;
             picPreview.Image = filteredColoredBitmap;
             UpdateComponentImagechoosenSuccess();

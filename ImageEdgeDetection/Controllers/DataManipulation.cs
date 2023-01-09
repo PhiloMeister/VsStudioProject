@@ -11,7 +11,7 @@ namespace ImageEdgeDetection.Controllers
 {
     public class DataManipulation : IDataManipulation
     {
-        public Bitmap openImageDialog(System.Windows.Forms.PictureBox picPreview)
+        public Bitmap openImageDialog()
         {
             Bitmap originalBitmap = null;
             OpenFileDialog ofd = new OpenFileDialog();
